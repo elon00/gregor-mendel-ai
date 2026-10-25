@@ -1,0 +1,57 @@
+{
+  "mcpServers": {
+    "gregor-mendel-ai": {
+      "command": "cargo",
+      "args": [
+        "run",
+        "--release",
+        "--quiet"
+      ],
+      "env": {
+        "RUST_LOG": "info",
+        "TITAN_PROTOCOL": "MENDEL",
+        "FIPS_203_LEVEL": "ML-KEM-768",
+        "FIPS_204_LEVEL": "ML-DSA-65"
+      },
+      "tools": [
+        {
+          "name": "calculate_mendelian_punnett_ratios",
+          "description": "Computes statistical genotypic and phenotypic inheritance distribution probabilities across n-allelic loci",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "alleles_p1": {
+                "type": "string"
+              },
+              "alleles_p2": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "alleles_p1",
+              "alleles_p2"
+            ]
+          }
+        },
+        {
+          "name": "test_chi_square_genetic_goodness_of_fit",
+          "description": "Evaluates empirical crossing datasets against theoretical 9:3:3:1 and 3:1 Mendelian distributions",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "observed_counts": {
+                "type": "array"
+              },
+              "expected_ratio": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "observed_counts"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
